@@ -7,8 +7,7 @@ import com.bumptech.glide.Glide
 import com.example.hilt.data.database.entity.LikeVideoEntity
 import com.example.hilt.databinding.PopularItemBinding
 
-class MyPageAdapter(private val items: List<LikeVideoEntity>): RecyclerView.Adapter<MyPageAdapter.Holder>() {
-
+class MyPageAdapter(var items: List<LikeVideoEntity>): RecyclerView.Adapter<MyPageAdapter.Holder>() {
     class Holder(binding: PopularItemBinding) : RecyclerView.ViewHolder(binding.root) {
         val image = binding.itemThumbnail
         val channelId = binding.itemChannelId

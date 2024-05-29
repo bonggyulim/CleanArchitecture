@@ -3,6 +3,7 @@ package com.example.hilt.data.repository
 import com.example.hilt.data.database.LikeVideoDAO
 import com.example.hilt.data.database.entity.LikeVideoEntity
 import com.example.hilt.domain.repository.CacheRepository
+import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
 
 class CacheRepositoryImpl @Inject constructor(
@@ -12,7 +13,7 @@ class CacheRepositoryImpl @Inject constructor(
         likeVideoDAO.insertVideo(likeVideoEntity)
     }
 
-    override suspend fun getAllVideo(): List<LikeVideoEntity> {
+    override fun getAllVideo(): Flow<List<LikeVideoEntity>> {
         return likeVideoDAO.getAllVideo()
     }
 

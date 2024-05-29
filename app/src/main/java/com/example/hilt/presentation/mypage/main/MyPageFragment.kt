@@ -6,11 +6,13 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.repeatOnLifecycle
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.hilt.databinding.FragmentMyPageBinding
-import com.example.hilt.presentation.popular.main.PopularVideoViewModel
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
@@ -30,22 +32,19 @@ class MyPageFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        getItems()
-        setupObservers()
+        setupRecyclerView()
     }
 
-    private fun getItems() {
-        viewModel.fetchLikeVideoList()
-    }
-
-
-
-
-    private fun setupObservers() {
-        viewModel.getLikeVideoList.observe(viewLifecycleOwner) {
-            myPageAdapter = MyPageAdapter(it)
-            binding.rvMypage.adapter = myPageAdapter
-            binding.rvMypage.layoutManager = LinearLayoutManager(requireContext())
+    private fun setupRecyclerView() {
+        lifecycleScope.launch {
+            repeatOnLifecycle(Lifecycle.State.STARTED) {
+                // shared 사용하면 cllectLatest 사용
+                viewModel.getLikeVideoList.collectLatest { videoList ->
+                    myPageAdapter = MyPageAdapter(videoList)
+                    binding.rvMypage.adapter = myPageAdapter
+                    binding.rvMypage.layoutManager = LinearLayoutManager(requireContext())
+                }
+            }
         }
     }
 
