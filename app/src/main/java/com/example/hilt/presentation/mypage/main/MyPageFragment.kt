@@ -39,7 +39,7 @@ class MyPageFragment : Fragment() {
         lifecycleScope.launch {
             repeatOnLifecycle(Lifecycle.State.STARTED) {
                 // shared 사용하면 cllectLatest 사용
-                viewModel.getLikeVideoList.collectLatest { videoList ->
+                viewModel.getLikeVideoList.collect { videoList ->
                     myPageAdapter = MyPageAdapter(videoList)
                     binding.rvMypage.adapter = myPageAdapter
                     binding.rvMypage.layoutManager = LinearLayoutManager(requireContext())
