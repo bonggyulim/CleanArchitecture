@@ -1,17 +1,16 @@
 package com.example.hilt.presentation.main
 
 import android.os.Bundle
-import android.view.MenuItem
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.example.hilt.R
-import com.example.hilt.data.database.LikeVideoDAO
 import com.example.hilt.databinding.ActivityMainBinding
 import com.example.hilt.presentation.mypage.main.MyPageFragment
 import com.example.hilt.presentation.popular.main.PopularVideoFragment
-import com.google.android.material.bottomnavigation.BottomNavigationView
+import com.google.firebase.Firebase
+import com.google.firebase.firestore.firestore
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -27,7 +26,15 @@ class MainActivity : AppCompatActivity() {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
+        val db = Firebase.firestore
+        val user = hashMapOf(
+            "first" to "Ada",
+            "last" to "Lovelace",
+            "born" to 1815,
+        )
+        db.collection("users").add(user)
 
+        
         initBtn()
     }
 
