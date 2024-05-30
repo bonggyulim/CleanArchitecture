@@ -5,9 +5,10 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.hilt.domain.repository.CacheRepository
-import com.example.hilt.presentation.popular.mapper.asLikeVideoEntity
+import com.example.hilt.presentation.popular.mapper.toModel
 import com.example.hilt.presentation.popular.model.PopularVideo
 import com.example.hilt.domain.repository.PopularRepository
+import com.example.hilt.presentation.popular.mapper.toEntity
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -27,12 +28,12 @@ class PopularVideoViewModel @Inject constructor(
             chart = "mostPopular",
             maxResults = 5
         )
-        _getPopularList.value = popularData.items.asLikeVideoEntity()
+        _getPopularList.value = popularData.items.toModel()
     }
 
     fun insertVideo(video: PopularVideo) {
         viewModelScope.launch(Dispatchers.IO) {
-            cacheRepository.insertVideo(video.asLikeVideoEntity())
+            cacheRepository.insertVideo(video.toEntity())
         }
     }
 }

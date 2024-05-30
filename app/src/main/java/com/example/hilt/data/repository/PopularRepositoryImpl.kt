@@ -1,6 +1,6 @@
 package com.example.hilt.data.repository
 
-import com.example.hilt.data.mapper.toDomainEntity
+import com.example.hilt.data.mapper.toEntity
 import com.example.hilt.data.remote.remote.PopularRemoteDataSource
 import com.example.hilt.domain.entity.DomainPopularVideoList
 import com.example.hilt.domain.repository.PopularRepository
@@ -22,6 +22,6 @@ class PopularRepositoryImpl @Inject constructor(
             part,
             chart,
             maxResults
-        ).toDomainEntity()
+        ).toEntity()
     }
 }

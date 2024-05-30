@@ -1,7 +1,7 @@
 package com.example.hilt.domain.entity
 
-data class DomainPopularVideoList(val items: List<DomainPopularVideo>)
-data class DomainPopularVideo(
+data class DomainPopularVideoList(val items: List<DomainPopularVideoEntity>)
+data class DomainPopularVideoEntity(
     val id: String,
     val title: String?,
     val ChannelId: String?,

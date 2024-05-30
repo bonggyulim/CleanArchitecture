@@ -6,5 +6,5 @@ data class PopularVideo(
     val title: String?,
     val ChannelId: String?,
     val thumbnails: String?,
-    val isLiked: Boolean = false
+    val isLiked: Boolean? = false
 )

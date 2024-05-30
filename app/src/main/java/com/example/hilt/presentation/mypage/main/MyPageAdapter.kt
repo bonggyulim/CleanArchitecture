@@ -4,10 +4,11 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import com.example.hilt.data.database.entity.LikeVideoEntity
+import com.example.hilt.data.database.entity.LikeVideoModel
 import com.example.hilt.databinding.PopularItemBinding
+import com.example.hilt.presentation.popular.model.PopularVideo
 
-class MyPageAdapter(var items: List<LikeVideoEntity>): RecyclerView.Adapter<MyPageAdapter.Holder>() {
+class MyPageAdapter(var items: List<PopularVideo>): RecyclerView.Adapter<MyPageAdapter.Holder>() {
     class Holder(binding: PopularItemBinding) : RecyclerView.ViewHolder(binding.root) {
         val image = binding.itemThumbnail
         val channelId = binding.itemChannelId

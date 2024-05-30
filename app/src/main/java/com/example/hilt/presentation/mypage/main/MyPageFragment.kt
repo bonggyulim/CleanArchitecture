@@ -11,14 +11,10 @@ import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import com.example.hilt.databinding.FragmentMyPageBinding
 import com.example.hilt.presentation.main.UiState
-import com.google.firebase.Firebase
-import com.google.firebase.FirebaseApp
-import com.google.firebase.firestore.firestore
+import com.example.hilt.presentation.popular.mapper.toModel
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
@@ -53,7 +49,8 @@ class MyPageFragment : Fragment() {
                             Log.d("UiState", "UiState loading")
                         }
                         is UiState.Success -> {
-                            myPageAdapter = MyPageAdapter(uiState.data)
+                            val data = uiState.data.toModel()
+                            myPageAdapter = MyPageAdapter(data)
                             binding.rvMypage.adapter = myPageAdapter
                             binding.rvMypage.layoutManager = LinearLayoutManager(requireContext())
                         }

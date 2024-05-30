@@ -8,7 +8,7 @@ import kotlinx.parcelize.Parcelize
 
 @Entity(tableName = "video_table")
 @Parcelize
-class LikeVideoEntity (
+class LikeVideoModel (
     @PrimaryKey
     @ColumnInfo(name = "video_id")
     val id: String,
