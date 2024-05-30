@@ -35,8 +35,8 @@ class MyPageViewModel @Inject constructor(
             _getLikeVideoList.value = UiState.Loading
 
             getAllVideoUseCase.invoke()
-                .catch {
-                    _getLikeVideoList.value = UiState.Error("error")
+                .catch { e ->
+                    _getLikeVideoList.value = UiState.Error(e.toString())
                 }
                 .collect { videoList ->
                     _getLikeVideoList.value = UiState.Success(videoList)

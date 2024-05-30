@@ -15,5 +15,5 @@ class LikeVideoEntity (
     val title: String?,
     val ChannelId: String?,
     val thumbnails: String?,
-    val isLiked: Boolean?
+    val isLiked: Boolean?,
 ): Parcelable
